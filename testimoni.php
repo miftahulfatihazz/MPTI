@@ -68,7 +68,7 @@ $testimonials = $conn->query("SELECT * FROM testimonials WHERE status = 'approve
             <div class="row justify-content-center">
                 <div class="col-lg-8">
                     <div class="card shadow-sm">
-                        <div class="card-header bg-primary text-white">
+                        <div class="card-header text-white" style="background-color: #fd7e14;">
                             <h4 class="mb-0">Bagikan Pengalaman Anda</h4>
                         </div>
                         <div class="card-body p-4">
@@ -85,7 +85,7 @@ $testimonials = $conn->query("SELECT * FROM testimonials WHERE status = 'approve
                                     <textarea name="content" id="content" class="form-control" rows="5" required></textarea>
                                 </div>
                                 <div class="d-grid">
-                                    <button type="submit" class="btn btn-primary btn-lg">Kirim Testimoni</button>
+                                    <button type="submit" class="btn btn-cta btn-lg">Kirim Testimoni</button>
                                 </div>
                             </form>
                         </div>

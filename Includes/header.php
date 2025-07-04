@@ -26,30 +26,34 @@ $current_page = basename($_SERVER['PHP_SELF']);
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
+        /* ===================================================================
+           1. General & Typography
+        =================================================================== */
         body {
             font-family: 'Poppins', sans-serif;
         }
 
+        /* ===================================================================
+           2. Navigation Bar (Navbar)
+        =================================================================== */
         .navbar {
             padding-top: 1rem;
             padding-bottom: 1rem;
             transition: all 0.3s;
         }
+
         .navbar-brand {
             font-weight: 700;
             color: #151414;
         }
 
-        /* ================================== */
-        /*     PERUBAHAN HANYA DI BAGIAN INI    */
-        /* ================================== */
         .navbar-brand .logo-circle {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 32px;  /* Ukuran tetap untuk lingkaran */
-            height: 32px; /* Ukuran tetap untuk lingkaran */
-            background-color: #fd7e14; /* Warna oranye */
+            width: 32px;
+            height: 32px;
+            background-color: #fd7e14;
             color: white;
             border-radius: 50%;
             margin-right: 0.5rem;
@@ -63,9 +67,11 @@ $current_page = basename($_SERVER['PHP_SELF']);
             margin: 0 0.5rem;
             color: #555;
         }
+
         .nav-link.active {
             color: #fd7e14 !important;
         }
+
         .nav-link.active::after {
             content: '';
             position: absolute;
@@ -75,6 +81,10 @@ $current_page = basename($_SERVER['PHP_SELF']);
             height: 2px;
             background-color: #fd7e14;
         }
+
+        /* ===================================================================
+           3. Buttons
+        =================================================================== */
         .btn-cta {
             background-color: #fd7e14;
             color: white;
@@ -83,25 +93,163 @@ $current_page = basename($_SERVER['PHP_SELF']);
             font-weight: 600;
             border: 2px solid #fd7e14;
         }
+
         .btn-cta:hover {
             background-color: #e86a04;
             color: white;
             border-color: #e86a04;
         }
+
         .btn-admin {
             border: 1px solid #dee2e6;
             border-radius: 50px;
             padding: 0.5rem 1.5rem;
             color: #555;
         }
+
         .btn-admin:hover {
             background-color: #f8f9fa;
         }
 
-        .footer-section { background: #151414; color: white; }
-        .footer-content { position: relative; z-index: 2; }
+        .btn-outline-primary {
+            --bs-btn-color: #fd7e14;
+            --bs-btn-border-color: #fd7e14;
+            --bs-btn-hover-color: #fff;
+            --bs-btn-hover-bg: #fd7e14;
+            --bs-btn-hover-border-color: #fd7e14;
+            --bs-btn-active-color: #fff;
+            --bs-btn-active-bg: #e46d0a;
+            --bs-btn-active-border-color: #d16409;
+        }
+
+        .btn-icon-swap .icon-hover {
+            display: none;
+        }
+
+        .btn-icon-swap:hover .icon-default {
+            display: none;
+        }
+
+        .btn-icon-swap:hover .icon-hover {
+            display: inline-block;
+        }
+
+        /* ===================================================================
+           4. Page Headers (Tentang Kami, Mitra, dll)
+        =================================================================== */
+        .about-header,
+        .testimonial-header,
+        .page-header-section {
+            background-color: #FFFBF5; /* Warna krem/kuning sangat muda */
+            padding: 4rem 0;
+        }
         
-        /* CSS Tambahan untuk memperbaiki logo di footer juga */
+        .page-header-section {
+            padding-bottom: 6rem; /* Khusus untuk Mitra agar ada ruang overlap */
+        }
+
+
+        /* ===================================================================
+           5. Components & Widgets
+        =================================================================== */
+        /* Custom Pills (digunakan di Testimoni & Mitra) */
+        .testimonial-pills-container,
+        .custom-pills-container {
+            background-color: #f1f3f5;
+            border-radius: 0.75rem;
+            padding: 0.25rem;
+            border: 1px solid #dee2e6;
+        }
+
+        .testimonial-pills-container .nav-link,
+        .custom-pills-container .nav-link {
+            border: 0;
+            border-radius: 0.5rem;
+            color: #495057;
+            font-weight: 500;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .testimonial-pills-container .nav-link.active,
+        .custom-pills-container .nav-link.active {
+            background-color: #ffffff;
+            color: #212529;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+        }
+
+        .testimonial-pills-container .nav-link:not(.active):hover,
+        .custom-pills-container .nav-link:not(.active):hover {
+            color: #212529;
+        }
+
+        /* Visi Misi & Tentang Kami */
+        .image-container {
+            position: relative;
+        }
+        
+        .image-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background-color: #fd7e14;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        .mission-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .mission-list li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 0.75rem;
+        }
+        
+        .mission-list .bi-check-circle-fill {
+            color: #fd7e14;
+            margin-right: 0.75rem;
+            margin-top: 0.15rem;
+        }
+        
+        .vm-icon {
+            display: inline-flex;
+            width: 45px;
+            height: 45px;
+            background-color: #fd7e14;
+            color: white;
+            border-radius: 50%;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+        
+        /* Testimonial Card */
+        .testimonial-card {
+            border-left: 5px solid #0d6efd;
+        }
+        
+        .testimonial-quote {
+            font-style: italic;
+        }
+
+        /* ===================================================================
+           6. Footer
+        =================================================================== */
+        .footer-section {
+            background: #151414;
+            color: white;
+        }
+
         .footer-logo .logo-circle {
             display: inline-flex;
             align-items: center;
@@ -115,148 +263,121 @@ $current_page = basename($_SERVER['PHP_SELF']);
             font-weight: 700;
             font-size: 1.2rem;
         }
+
+        .footer-widget-heading h3 {
+            color: #fff;
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .footer-widget-heading h3::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -15px;
+            height: 2px;
+            width: 50px;
+            background: #ffc107;
+        }
+
+        .footer-widget ul {
+            padding: 0;
+            list-style: none;
+        }
+
+        .footer-widget ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-widget ul li a {
+            color: #878787;
+            text-decoration: none;
+        }
+
+        .footer-widget ul li a:hover {
+            color: #ffc107;
+        }
+
+        .footer-text p {
+            margin-bottom: 14px;
+            font-size: 14px;
+            color: #7e7e7e;
+            line-height: 28px;
+        }
+
+        .footer-social-icon span {
+            color: #fff;
+            display: block;
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .footer-social-icon a {
+            color: #fff;
+            font-size: 16px;
+            margin-right: 15px;
+        }
+
+        .footer-social-icon i {
+            height: 40px;
+            width: 40px;
+            text-align: center;
+            line-height: 40px;
+            border-radius: 50%;
+            border: 1px solid #fff;
+            display: inline-block;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .footer-social-icon a:hover i {
+            background-color: #ffc107;
+            border-color: #ffc107;
+            color: #151414;
+        }
         
-        .testimonial-header {
-        background-color: #FFFBF5; /* Warna krem seperti di gambar */
-        padding: 4rem 0;
-    }
+        .single-cta {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 25px;
+        }
+        
+        .single-cta i {
+            font-size: 20px;
+            color: #ffc107;
+            flex-shrink: 0;
+            margin-top: 5px;
+        }
 
-     /* Style untuk header halaman seperti "Tentang Kami" & "Testimoni" */
-    .about-header, .testimonial-header {
-        background-color: #FFFBF5; /* Warna krem */
-        padding: 4rem 0;
-    }
+        .single-cta .cta-text {
+            padding-left: 15px;
+        }
 
-    /* Style untuk wadah gambar dengan badge */
-    .image-container {
-        position: relative;
-    }
+        .single-cta .cta-text span {
+            color: #757575;
+        }
 
-    /* Style untuk badge "Bersertifikat" di atas gambar */
-    .image-badge {
-        position: absolute;
-        top: 1rem;
-        right: 1rem;
-        background-color: #fd7e14;
-        color: white;
-        padding: 0.3rem 0.8rem;
-        border-radius: 50px;
-        font-size: 0.85rem;
-        font-weight: 500;
-        display: inline-flex;
-        align-items: center;
-        gap: 0.4rem;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    }
-    .mission-list {
-    list-style: none;
-    padding-left: 0;
-}
-.mission-list li {
-    display: flex;
-    align-items: flex-start; /* Agar ikon dan teks sejajar di atas */
-    margin-bottom: 0.75rem;
-}
-.mission-list .bi-check-circle-fill {
-    color: #fd7e14; /* Warna oranye untuk ikon centang */
-    margin-right: 0.75rem;
-    margin-top: 0.15rem; /* Sedikit penyesuaian posisi vertikal */
-}
-.vm-icon {
-    display: inline-flex;
-    width: 45px;
-    height: 45px;
-    background-color: #fd7e14;
-    color: white;
-    border-radius: 50%;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    flex-shrink: 0;
-}
+        .single-cta .cta-text span a {
+            color: #757575;
+            text-decoration: none;
+        }
 
-/* 1. Wadah abu-abu yang membungkus semua tombol */
-.testimonial-pills-container {
-    background-color: #f1f3f5; /* Warna latar abu-abu muda */
-    border-radius: 0.75rem;     /* Membuat sudut sangat tumpul */
-    padding: 0.25rem;           /* Memberi sedikit jarak di dalam */
-    border: 1px solid #dee2e6;  /* Garis tepi tipis agar rapi */
-}
+        .single-cta .cta-text span a:hover {
+            color: #ffc107;
+        }
 
-/* 2. Mengatur semua tombol/link di dalamnya */
-.testimonial-pills-container .nav-link {
-    border: 0;                  /* Menghapus border bawaan */
-    border-radius: 0.5rem;      /* Sudut tumpul untuk tombol */
-    color: #495057;             /* Warna teks untuk tombol tidak aktif */
-    font-weight: 500;           /* Sedikit lebih tebal */
-    transition: all 0.2s ease-in-out; /* Animasi perpindahan yang halus */
-}
+        .copyright-area {
+            background: #202020;
+            padding: 25px 0;
+        }
 
-/* 3. Style khusus untuk tombol yang sedang AKTIF */
-.testimonial-pills-container .nav-link.active {
-    background-color: #ffffff;  /* Latar belakang putih solid */
-    color: #212529;             /* Warna teks hitam */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08); /* Memberi efek bayangan halus */
-}
-
-/* 4. (Opsional) Efek saat mouse diarahkan ke tombol tidak aktif */
-.testimonial-pills-container .nav-link:not(.active):hover {
-    color: #212529;
-}
-
-   .custom-pills-container {
-        background-color: #f1f3f5; /* Warna latar abu-abu muda */
-        border-radius: 0.75rem;     /* Membuat sudut sangat tumpul */
-        padding: 0.25rem;           /* Memberi sedikit jarak di dalam */
-        border: 1px solid #dee2e6;  /* Garis tepi tipis agar rapi */
-    }
-
-    .custom-pills-container .nav-link {
-        border: 0;                  /* Menghapus border bawaan */
-        border-radius: 0.5rem;      /* Sudut tumpul untuk tombol */
-        color: #495057;             /* Warna teks untuk tombol tidak aktif */
-        font-weight: 500;           /* Sedikit lebih tebal */
-        transition: all 0.2s ease-in-out; /* Animasi perpindahan yang halus */
-    }
-
-    /* Style khusus untuk tombol yang sedang AKTIF */
-    .custom-pills-container .nav-link.active {
-        background-color: #ffffff;  /* Latar belakang putih solid */
-        color: #212529;             /* Warna teks hitam */
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08); /* Memberi efek bayangan halus */
-    }
-
-    .custom-pills-container .nav-link:not(.active):hover {
-        color: #212529;
-    }
-
-    /* CSS untuk header halaman */
-    .page-header-section {
-        background-color: #fffaf0; /* Warna cream/kuning sangat muda */
-        padding-top: 4rem;
-        padding-bottom: 6rem;
-    }
-    .testimonial-card { border-left: 5px solid #0d6efd; }
-    .testimonial-quote { font-style: italic; }
-        .footer-widget-heading h3 { color: #fff; font-size: 20px; font-weight: 600; margin-bottom: 40px; position: relative; }
-        .footer-widget-heading h3::before { content: ""; position: absolute; left: 0; bottom: -15px; height: 2px; width: 50px; background: #ffc107; }
-        .footer-widget ul { padding: 0; list-style: none; }
-        .footer-widget ul li { display: block; width: 100%; margin-bottom: 12px; }
-        .footer-widget ul li a { color: #878787; text-decoration: none; }
-        .footer-widget ul li a:hover { color: #ffc107; }
-        .footer-text p { margin-bottom: 14px; font-size: 14px; color: #7e7e7e; line-height: 28px; }
-        .footer-social-icon span { color: #fff; display: block; font-size: 16px; font-weight: 700; margin-bottom: 20px; }
-        .footer-social-icon a { color: #fff; font-size: 16px; margin-right: 15px; }
-        .footer-social-icon i { height: 40px; width: 40px; text-align: center; line-height: 40px; border-radius: 50%; border: 1px solid #fff; display: inline-block; transition: all 0.3s ease-in-out; }
-        .footer-social-icon a:hover i { background-color: #ffc107; border-color: #ffc107; color: #151414; }
-        .copyright-area { background: #202020; padding: 25px 0; }
-        .copyright-text p { margin: 0; font-size: 14px; color: #878787; }
-        .single-cta { display: flex; align-items: flex-start; margin-bottom: 25px; }
-        .single-cta i { font-size: 20px; color: #ffc107; flex-shrink: 0; margin-top: 5px; }
-        .single-cta .cta-text { padding-left: 15px; }
-        .single-cta .cta-text span { color: #757575; }
-        .single-cta .cta-text span a { color: #757575; text-decoration: none; }
-        .single-cta .cta-text span a:hover { color: #ffc107; }
+        .copyright-text p {
+            margin: 0;
+            font-size: 14px;
+            color: #878787;
+        }
     </style>
 </head>
 <body>

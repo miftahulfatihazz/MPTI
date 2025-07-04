@@ -50,8 +50,10 @@ Header Halaman Kemitraan
                                     <h5 class="fw-bold"><?php echo htmlspecialchars($partner['name']); ?></h5>
                                     <p class="mb-2"><i class="bi bi-geo-alt me-1"></i> <?php echo htmlspecialchars($partner['address']); ?></p>
                                     <p class="mb-3"><i class="bi bi-whatsapp me-1"></i> <?php echo htmlspecialchars($partner['whatsapp']); ?></p>
-                                    <a href="https://maps.google.com/?q=<?php echo urlencode($partner['address']); ?>" target="_blank" class="btn btn-outline-primary mt-auto">
-                                        <i class="bi bi-pin-map me-2"></i>Lihat di Maps
+                                    <a href="https://maps.google.com/?q=<?php echo urlencode($partner['address']); ?>" target="_blank" class="btn btn-outline-primary btn-icon-swap mt-auto">
+                                        <span class="icon-default"><i class="bi bi-pin-map me-2"></i></span>
+                                        <span class="icon-hover"><i class="bi bi-send-fill me-2"></i></span>
+                                        Lihat di Maps
                                     </a>
                                 </div>
                             </div>
@@ -88,7 +90,7 @@ Header Halaman Kemitraan
                                 <div class="mb-3"><label for="whatsapp" class="form-label">Nomor Telepon/WhatsApp</label><input type="tel" class="form-control" id="whatsapp" name="whatsapp" required></div>
                                 <div class="mb-3"><label for="address" class="form-label">Alamat Lengkap</label><textarea class="form-control" id="address" name="address" rows="3" required></textarea></div>
                                 <div class="d-grid">
-                                    <button type="submit" class="btn btn-primary btn-lg">Kirim Pendaftaran</button>
+                                    <button type="submit" class="btn btn-cta btn-lg">Kirim Pendaftaran</button>
                                 </div>
                             </form>
                         </div>
