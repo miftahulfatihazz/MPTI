@@ -1,49 +1,43 @@
 <?php
 // File: admin/orders/update_status.php
+require_once '../../config/database.php';
 
-session_start();
-if (!isset($_SESSION['admin_id'])) {
-    header("Location: ../login.php");
-    exit();
-}
-require '../../config/database.php';
+// Pastikan request adalah POST dan aksi yang dikirim benar
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'update_status') {
 
-$action = $_REQUEST['action'] ?? null;
-$order_id = $_REQUEST['id'] ?? $_POST['order_id'] ?? null;
+    // Ambil dan validasi data dari form
+    $order_id = isset($_POST['order_id']) ? (int)$_POST['order_id'] : 0;
+    $new_status = isset($_POST['status']) ? $_POST['status'] : '';
 
-if (!$order_id || !$action) {
+    // Daftar status yang diizinkan (sesuai dengan ENUM di database Anda)
+    $allowed_statuses = ['menunggu_pembayaran', 'diproses', 'dikirim', 'selesai', 'dibatalkan'];
+
+    // Lakukan update hanya jika data valid
+    if ($order_id > 0 && !empty($new_status) && in_array($new_status, $allowed_statuses)) {
+        
+        $sql = "UPDATE orders SET status = ? WHERE id = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("si", $new_status, $order_id);
+        
+        if ($stmt->execute()) {
+            // JIKA SUKSES: Perintahkan browser kembali ke index.php
+            header("Location: index.php?update=sukses");
+            exit();
+        } else {
+            // JIKA GAGAL: Perintahkan browser kembali ke index.php dengan pesan error
+            header("Location: index.php?update=gagal");
+            exit();
+        }
+        
+    } else {
+        // Jika input tidak valid, kembali dengan pesan error
+        header("Location: index.php?update=gagal_input");
+        exit();
+    }
+
+} else {
+    // Jika halaman ini diakses langsung, langsung lempar kembali ke index.php
     header("Location: index.php");
     exit();
 }
-$order_id = (int)$order_id;
-
-// Logika untuk menyetujui pembayaran
-if ($action == 'approve_payment') {
-    $stmt = $conn->prepare("UPDATE orders SET status = 'diproses' WHERE id = ?");
-    $stmt->bind_param("i", $order_id);
-    $stmt->execute();
-}
-// Logika untuk menolak pembayaran
-elseif ($action == 'reject_payment') {
-    // Opsional: Hapus bukti pembayaran yang ditolak agar user bisa upload lagi
-    // Untuk saat ini, kita hanya ubah statusnya
-    $stmt = $conn->prepare("UPDATE orders SET status = 'dibatalkan' WHERE id = ?");
-    $stmt->bind_param("i", $order_id);
-    $stmt->execute();
-}
-// Logika untuk update status manual dari form
-elseif ($action == 'update_status' && isset($_POST['status'])) {
-    $new_status = $_POST['status'];
-    // Validasi status yang diizinkan
-    $allowed_statuses = ['diproses', 'dikirim', 'selesai', 'dibatalkan'];
-    if (in_array($new_status, $allowed_statuses)) {
-        $stmt = $conn->prepare("UPDATE orders SET status = ? WHERE id = ?");
-        $stmt->bind_param("si", $new_status, $order_id);
-        $stmt->execute();
-    }
-}
-
-// Redirect kembali ke halaman detail dengan pesan sukses
-header("Location: detail.php?id=" . $order_id . "&status=sukses");
-exit();
 ?>

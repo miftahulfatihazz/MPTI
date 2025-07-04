@@ -2,15 +2,21 @@
 // File: konfirmasi_pemesanan.php
 require_once 'includes/header.php';
 
-if (!isset($_GET['order_id'])) {
-    header("Location: index.php");
+// Cek apakah 'order_id' ada di URL dan bukan string kosong
+if (!isset($_GET['order_id']) || empty($_GET['order_id'])) {
+    echo "ID pesanan tidak disediakan.";
+    // Mungkin lebih baik redirect ke halaman utama
+    // header("Location: index.php");
     exit();
 }
-$order_id= isset($_GET['id']) ? (int)$_GET['id'] : NULL;
 
+// Ambil order_id dan pastikan itu adalah angka
+$order_id = (int)$_GET['order_id'];
+
+// Jika setelah diubah jadi angka nilainya 0, berarti tidak valid
 if ($order_id === 0) {
-  echo "ID pesanan tidak valid.";
-  exit;
+    echo "ID pesanan tidak valid.";
+    exit;
 }
 
 // Ambil data pesanan
