@@ -12,6 +12,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
 ?>
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,7 +25,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
+
     <style>
         /* ===================================================================
            1. General & Typography
@@ -140,12 +141,14 @@ $current_page = basename($_SERVER['PHP_SELF']);
         .about-header,
         .testimonial-header,
         .page-header-section {
-            background-color: #FFFBF5; /* Warna krem/kuning sangat muda */
+            background-color: #FFFBF5;
+            /* Warna krem/kuning sangat muda */
             padding: 4rem 0;
         }
-        
+
         .page-header-section {
-            padding-bottom: 6rem; /* Khusus untuk Mitra agar ada ruang overlap */
+            padding-bottom: 6rem;
+            /* Khusus untuk Mitra agar ada ruang overlap */
         }
 
 
@@ -186,7 +189,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
         .image-container {
             position: relative;
         }
-        
+
         .image-badge {
             position: absolute;
             top: 1rem;
@@ -202,24 +205,24 @@ $current_page = basename($_SERVER['PHP_SELF']);
             gap: 0.4rem;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         }
-        
+
         .mission-list {
             list-style: none;
             padding-left: 0;
         }
-        
+
         .mission-list li {
             display: flex;
             align-items: flex-start;
             margin-bottom: 0.75rem;
         }
-        
+
         .mission-list .bi-check-circle-fill {
             color: #fd7e14;
             margin-right: 0.75rem;
             margin-top: 0.15rem;
         }
-        
+
         .vm-icon {
             display: inline-flex;
             width: 45px;
@@ -232,12 +235,12 @@ $current_page = basename($_SERVER['PHP_SELF']);
             font-size: 1.5rem;
             flex-shrink: 0;
         }
-        
+
         /* Testimonial Card */
         .testimonial-card {
             border-left: 5px solid #0d6efd;
         }
-        
+
         .testimonial-quote {
             font-style: italic;
         }
@@ -337,13 +340,13 @@ $current_page = basename($_SERVER['PHP_SELF']);
             border-color: #ffc107;
             color: #151414;
         }
-        
+
         .single-cta {
             display: flex;
             align-items: flex-start;
             margin-bottom: 25px;
         }
-        
+
         .single-cta i {
             font-size: 20px;
             color: #ffc107;
@@ -378,8 +381,99 @@ $current_page = basename($_SERVER['PHP_SELF']);
             font-size: 14px;
             color: #878787;
         }
+
+        /* tentang kami */
+        .card {
+            border: none;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        /* --- Contact Info Section --- */
+        .contact-icon-circle {
+            width: 50px;
+            height: 50px;
+            background-color: rgb(243, 220, 202);
+            /* Light peach background */
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .contact-icon-circle .bi {
+            color: #fd7e14;
+            /* Darker peach icon color */
+            font-size: 1.25rem;
+        }
+
+
+        .btn-maps {
+            border: 1px solid #fd7e14;
+            color: #fd7e14;
+            padding: 5px 15px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .btn-maps:hover {
+            background-color: #fd7e14;
+            color: white;
+        }
+
+        /* --- Social Media & Quick Actions Section --- */
+        .social-link {
+            border: 1px solid #e9ecef;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .social-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            border-color: #dee2e6;
+        }
+
+        .social-icon-circle {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        /* Specific colors for social icons */
+        .bg-light-green {
+            background-color: #E9FBF3;
+        }
+
+        .bg-light-green .bi-whatsapp {
+            color: #42CBA5;
+        }
+
+        .bg-light-pink {
+            background-color: #FDEFF4;
+        }
+
+        .bg-light-pink .bi-instagram {
+            color: #E75E8D;
+        }
+
+        .btn-outline {
+            color: #fd7e14;
+        }
+
+        .btn-outline-warning:hover {
+            background-color: #fd7e14;
+            border: #fd7e14;
+            color: white;
+        }
     </style>
 </head>
+
 <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
@@ -392,11 +486,11 @@ $current_page = basename($_SERVER['PHP_SELF']);
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav mx-auto">
-                        <li class="nav-item"><a class="nav-link <?php if($current_page == 'index.php') echo 'active'; ?>" href="index.php">Beranda</a></li>
-                        <li class="nav-item"><a class="nav-link <?php if($current_page == 'produk.php') echo 'active'; ?>" href="produk.php">Produk</a></li>
-                        <li class="nav-item"><a class="nav-link <?php if($current_page == 'mitra.php') echo 'active'; ?>" href="mitra.php">Mitra</a></li>
-                        <li class="nav-item"><a class="nav-link <?php if($current_page == 'testimoni.php') echo 'active'; ?>" href="testimoni.php">Testimoni</a></li>
-                        <li class="nav-item"><a class="nav-link <?php if($current_page == 'tentang-kami.php') echo 'active'; ?>" href="tentang-kami.php">Tentang Kami</a></li>
+                        <li class="nav-item"><a class="nav-link <?php if ($current_page == 'index.php') echo 'active'; ?>" href="index.php">Beranda</a></li>
+                        <li class="nav-item"><a class="nav-link <?php if ($current_page == 'produk.php') echo 'active'; ?>" href="produk.php">Produk</a></li>
+                        <li class="nav-item"><a class="nav-link <?php if ($current_page == 'mitra.php') echo 'active'; ?>" href="mitra.php">Mitra</a></li>
+                        <li class="nav-item"><a class="nav-link <?php if ($current_page == 'testimoni.php') echo 'active'; ?>" href="testimoni.php">Testimoni</a></li>
+                        <li class="nav-item"><a class="nav-link <?php if ($current_page == 'tentang-kami.php') echo 'active'; ?>" href="tentang-kami.php">Tentang Kami</a></li>
                     </ul>
                     <div class="d-flex align-items-center">
                         <a href="https://wa.me/<?php echo $whatsapp_number; ?>" class="text-dark text-decoration-none me-3 d-none d-lg-block">
