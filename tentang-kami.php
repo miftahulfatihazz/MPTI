@@ -46,9 +46,9 @@ function format_whatsapp_display($number)
     <div class="container">
         <h2 class="fw-bold"><span style="color: #fd7e14;">Tentang</span> Kami</h2>
         <p class="lead text-muted mt-3">
-            <?php
-            echo nl2br(htmlspecialchars($content['company_profile_short'] ?? 'Mengenal lebih dekat Bakso Premium Indonesia - perjalanan, visi misi, dan komitmen kami dalam menghadirkan bakso berkualitas tinggi untuk keluarga Indonesia.'));
-            ?>
+
+            'Mengenal lebih dekat Bakso Ikan Sinar Bahari Tasikmalaya - perjalanan, visi misi, dan komitmen kami dalam menghadirkan bakso berkualitas tinggi untuk keluarga
+
         </p>
     </div>
 </div>
@@ -223,9 +223,9 @@ function format_whatsapp_display($number)
                                 <div class="card-body p-4">
                                     <h4 class="fw-bold mb-4">Quick Actions</h4>
                                     <div class="d-grid gap-3">
-                                        <a href="produk.php" class="btn btn-orange">Lihat Produk Kami</a>
-                                        <a href="mitra.php" class="btn btn-outline-orange">Program Kemitraan</a>
-                                        <a href="testimoni.php" class="btn btn-outline-orange">Testimoni Pelanggan</a>
+                                        <a href="produk.php" class="btn btn-outline-warning">Lihat Produk Kami</a>
+                                        <a href="mitra.php" class="btn btn-outline-warning">Program Kemitraan</a>
+                                        <a href="testimoni.php" class="btn btn-outline-warning">Testimoni Pelanggan</a>
                                     </div>
                                 </div>
                             </div>
