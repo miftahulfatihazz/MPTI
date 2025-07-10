@@ -51,28 +51,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // 4. Update Database
-try {
-    // PERUBAHAN DI SINI:
-    // Menggunakan nama kolom yang sudah kita pastikan: 'payment_proof'
-    // Mengubah status menjadi 'diproses' agar sesuai dengan ENUM Anda
-    $sql = "UPDATE orders SET payment_proof = ?, status = 'diproses' WHERE id = ?";
-    
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("si", $new_file_name, $order_id);
-    
-    // Eksekusi query
-    if ($stmt->execute()) {
-        header("Location: konfirmasi_pemesanan.php?order_id=" . $order_id . "&status=sukses_upload");
+    try {
+        // ==========================================================
+        // PERUBAHAN UTAMA DI SINI
+        // Query sekarang HANYA mengupdate kolom 'payment_proof'.
+        // Kolom 'status' tidak lagi diubah secara otomatis.
+        // ==========================================================
+        $sql = "UPDATE orders SET payment_proof = ? WHERE id = ?";
+        
+        $stmt = $conn->prepare($sql);
+        
+        // bind_param tetap membutuhkan dua parameter: nama file (s) dan order_id (i) untuk klausa WHERE.
+        $stmt->bind_param("si", $new_file_name, $order_id);
+        
+        // Eksekusi query
+        if ($stmt->execute()) {
+            header("Location: konfirmasi_pemesanan.php?order_id=" . $order_id . "&status=sukses_upload");
+            exit();
+        } else {
+            throw new Exception("Gagal memperbarui database.");
+        }
+    } catch (Exception $e) {
+        // Kembalikan ke kode asli setelah masalah selesai
+        $pesan_error = "Sistem sedang mengalami gangguan. Gagal memperbarui pesanan.";
+        header("Location: pesan.php?status=error&pesan=" . urlencode($pesan_error) . "&kembali=" . urlencode($kembali_link));
         exit();
-    } else {
-        throw new Exception("Gagal memperbarui database.");
     }
-} catch (Exception $e) {
-    // Kembalikan ke kode asli setelah masalah selesai
-    $pesan_error = "Sistem sedang mengalami gangguan. Gagal memperbarui pesanan.";
-    header("Location: pesan.php?status=error&pesan=" . urlencode($pesan_error) . "&kembali=" . urlencode($kembali_link));
-    exit();
-}
 
 } else {
     // Jika halaman diakses langsung, alihkan ke beranda

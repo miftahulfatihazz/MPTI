@@ -44,7 +44,7 @@ function format_whatsapp_display($number)
 <!-- Bagian Header Halaman -->
 <div class="about-header text-center">
     <div class="container">
-        <h2 class="fw-bold"><span style="color: #fd7e14;">Tentang</span> Kami</h2>
+        <h2 class="display-4 fw-bold"><span style="color: #fd7e14;">Tentang</span> Kami</h2>
         <p class="lead text-muted mt-3">
 
             'Mengenal lebih dekat Bakso Ikan Sinar Bahari Tasikmalaya - perjalanan, visi misi, dan komitmen kami dalam menghadirkan bakso berkualitas tinggi untuk keluarga
